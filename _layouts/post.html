@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<h1>{{ page.title }}</h1>
+
+{{ content }}
+
+{% unless page.comments == null %}
+<div id="comments">
+	<a href="https://github.com/Thinkofname/thinkofname.github.io/issues/{{ page.comments }}"><span style="float: right">Post a comment here</span></a>
+</div>
+
+<script type="text/javascript">var githubIssueID = {{ page.comments }};</script>
+<script type="text/javascript" async src="/js/comments.js"></script>
+{% endunless %}

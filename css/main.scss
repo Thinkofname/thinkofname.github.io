@@ -1,0 +1,73 @@
+---
+---
+@charset "utf-8";
+
+body {
+	font-family: 'Droid Sans', sans-serif;
+	line-height: 1.4;
+	background-color: #EEE;
+	font-size: 16px;
+	color: #222;
+	padding: 0;
+	max-width: 800px;
+	margin: 50px auto;
+}
+
+h1 {
+	line-height: 1.2;
+	font-size: 1.8em;
+}
+
+h1.title {
+	font-size: 2em;
+
+	a {
+		text-decoration: none;
+		color: #222;
+	}
+}
+
+.posts {
+	list-style-type: none;
+	padding: 0;
+}
+
+span.postmeta {
+	line-height: 0.6;
+}
+
+img {
+	padding: 15px;
+}
+
+code {
+	background-color: #DDD;
+}
+
+.comments {
+	width: 100%;
+}
+
+.comment {
+	p {
+		padding-left: 50px;
+	}
+}
+
+.comment-icon {
+	padding: 0 10px;
+	width: 32px;
+	height: 32px;
+}
+
+.highlight {
+	background-color: #444;
+	margin: 0 0;
+
+	pre {
+		padding: 16px 16px;
+		code {
+			font-family: 'Source Code Pro', monospace;
+		}
+	}
+}
