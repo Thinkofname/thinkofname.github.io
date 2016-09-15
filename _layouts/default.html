@@ -6,8 +6,13 @@ layout: compress
 <head>
 	<title>{{ site.title }}</title>
 	<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Droid+Sans%7CSource+Code+Pro">
-	<link rel=stylesheet href="/css/main.css"/>
+	<!--<link rel=stylesheet href="/css/main.css"/>-->
+	<style type="text/css">
+		{% capture maincss %}{% include main.scss %}{% endcapture %}
+		{{ maincss | scssify }}
+	</style>
 	<link rel=stylesheet href="/css/highlight.css"/>
+	<meta name=viewport content="width=device-width, initial-scale=1">
 </head>
 <body>
 
