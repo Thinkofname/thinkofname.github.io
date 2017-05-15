@@ -31,7 +31,7 @@ to hold a reference to an element I created. It did have the benefit
 that the macros could automatically generate nice builders to work
 with:
 
-{% highlight rust %}
+```rust
 let login_btn = ui::ButtonBuilder::new()
     .position(0.0, 100.0)
     .size(400.0, 40.0)
@@ -42,7 +42,7 @@ let login_btn_text = ui::TextBuilder::new()
     .position(0.0, 0.0)
     .alignment(ui::VAttach::Middle, ui::HAttach::Center)
     .attach(&mut *login_btn.borrow_mut());
-{% endhighlight %}
+```
 
 The other way I have tried was using an entity component system to
 manage ui elements (This was done in the university project I talked
@@ -56,7 +56,7 @@ parents easier, instead of having a graph of all elements I could store
 them all linearly in memory and just lookup the parents position when
 aligning the element.
 
-{% highlight rust %}
+```rust
 pub fn create_image(
     m: &mut ecs::Manager, renderer: &mut render::Renderer,
     tex: &'static str, x: f64, y: f64, w: f64, h: f64) -> ecs::Entity
@@ -76,7 +76,7 @@ pub struct Position {
     pub h_align: HorizontalAlign,
     pub parent: Option<ecs::Entity>,
 }
-{% endhighlight %}
+```
 
 The issue with this system is that you lose the ability to be able
 to tell what an element is, whether its an image, text etc without
@@ -93,7 +93,7 @@ and a implementation of `Deref<Target=BaseElement>` and `DerefMut`
 which due to Rust's auto-deref rules allows access to the fields
 from `BaseElement` as if they were from the element that contains it.
 
-{% highlight rust %}
+```rust
 /// All elements contain at least this struct
 pub struct BaseElement {
     /// The id of the element
@@ -112,7 +112,7 @@ pub struct BaseElement {
 let mut img: Image = ...;
 img.position.x = 50;
 // etc
-{% endhighlight %}
+```
 
 To allow for elements to all be stored in a `Vec` together I wrapped
 them all in an enum. This does currently prevent custom element types
@@ -124,7 +124,7 @@ simply delegates to the wrapped struct. This way when you obtain an
 element (e.g. via a `get_element_by_id` method) you don't have to match
 against it to simply change its position/size.
 
-{% highlight rust %}
+```rust
 impl Deref for Element {
     type Target = BaseElement;
 
@@ -138,7 +138,7 @@ impl Deref for Element {
     }
 }
 // Repeat for DerefMut
-{% endhighlight %}
+```
 
 ## Positioning
 
@@ -153,7 +153,7 @@ takes the rect of the parent either computed by a previous
 `compute_rect` call or the rect of the screen and takes the
 `BaseElement` struct of the element.
 
-{% highlight rust %}
+```rust
 /// Computes the bounds of the element within the parent rect.
 /// This makes no attempt to ensure the size of the element fits
 /// within the bounds.
@@ -194,7 +194,7 @@ fn compute_rect(parent: Rect, element: &BaseElement) -> Rect {
     };
     ret
 }
-{% endhighlight %}
+```
 
 As pointed out in the comments width/height is a bit weird, this
 could be better handled by an enum but I haven't found a nice
@@ -221,14 +221,14 @@ all functions that can be used in events must be declared up front
 (scripts can't add their own) causing things like the `single_player`
 call being accessible whilst already in game.
 
-{% highlight json %}
+```json
 {
     "on_mouse_move_out": [
         "change_texture(ui/button, @@button_back@@)",
         "change_color(0, 0, 0, 255, @@button_text@@)"
     ]
 }
-{% endhighlight %}
+```
 
 I'm not sure of a solution which allows for events to be described in
 json, Rust and in scripts.

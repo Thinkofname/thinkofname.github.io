@@ -51,8 +51,13 @@ span.postmeta {
 	}
 }
 
-code {
+p > code {
 	background-color: #DDD;
+}
+
+code {
+	font-family: 'Source Code Pro', monospace;
+	background-color: transparent;
 }
 
 .comments {
@@ -71,15 +76,16 @@ code {
 	height: 32px;
 }
 
+pre.highlight {
+	padding: 16px 16px;
+}
+
 .highlight {
 	background-color: #444;
 	margin: 0 0;
+}
 
-	pre {
-		padding: 16px 16px;
-		code {
-			font-family: 'Source Code Pro', monospace;
-			background-color: transparent;
-		}
-	}
+.cimage {
+	margin: 0 auto;
+	display: block;
 }
