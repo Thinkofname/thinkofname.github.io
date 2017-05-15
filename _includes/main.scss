@@ -48,6 +48,8 @@ span.postmeta {
 	img {
 		display: block;
 		max-width: 100%;
+		margin: 0 auto;
+		float: none;
 	}
 }
 
@@ -78,6 +80,7 @@ code {
 
 pre.highlight {
 	padding: 16px 16px;
+	overflow-x: scroll;
 }
 
 .highlight {

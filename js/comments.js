@@ -5,7 +5,8 @@ window.onload = function() {
 		var info = JSON.parse(comments);
 		var now = Date.now();
 		if (now - info.fetchTime >= 20 * 60 * 1000) {
-		localStorage.removeItem("gh-" + githubIssueID);
+			localStorage.removeItem("gh-" + githubIssueID);
+			comments = null;
 		}
 	}
 	if (comments == null) {
