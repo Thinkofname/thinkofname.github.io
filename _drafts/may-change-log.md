@@ -6,8 +6,8 @@ title:  "UniverCity - Change log"
 I thought I should start a little series of monthly blog posts
 to show progress on the game. This will be a nice way for
 me to track my own progress on the project as well. This first
-one will include a bit of april, too, due to it being the first
-one in the series.
+one will include a bit of april, too, due to it being the
+series opener.
 
 ## Introduction
 
