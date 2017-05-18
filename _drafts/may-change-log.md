@@ -27,10 +27,10 @@ window management/audio, OpenGL for rendering and LuaJIT
 for scripting. Its been a bit challenging so far because
 whilst I've written Rust code in the past I've never done
 anything on this scale (the same could be said about most
-other languages I've programmed in however).
+other languages I've programmed in, though).
 The only large, open-source Rust projects I currently know
 about are [`rustc`][rust-repo] and [Servo][servo-repo],
-both of which are structured differently when compared to
+both of which have different structures when compared to
 a game engine (servo might be close but I struggle
 navigating its repo). I feel like my issues so far are due
 to a lack of experience rather than Rust, however, and that
@@ -42,12 +42,12 @@ libraries to handle common tasks easy. The error messages for
 compile errors are great and getting better all the time; I've 
 almost never found myself confused by one. I've been stuck 
 on nightly for a while now but I'm one unstable feature away from
-stable (`retain_hash_collection`). Nightly breakages have
-been rare, though, and when it has happened `rustup` makes it
+stable (`retain_hash_collection`). Even so, nightly breakages
+have been rare, and when it has happened `rustup` makes it
 easy to rollback. I've managed to keep unsafe code to a
-minimum; the only exceptions currently are:
+minimum, with the only exceptions currently being:
 
-* Accessing components outside the ecs.
+* Accessing components outside the ECS
 
     I'm using my own currently but using [specs][specs]
     could solve this. (I started around the time
