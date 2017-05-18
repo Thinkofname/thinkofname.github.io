@@ -4,72 +4,71 @@ title:  "UniverCity - Change log"
 ---
 
 I thought I should start a little series of monthly blog posts
-to show progress on the game. This will also be a nice way for
-me to track my own progress on the project as well. This one
-will include a bit of april as well due to it being the first
+to show progress on the game. This will be a nice way for
+me to track my own progress on the project as well. This first
+one will include a bit of april, too, due to it being the first
 one in the series.
 
 ## Introduction
 
-Since this is the first post I though I'd talk about what I'm
+Since this is the first post I thought I'd talk about what I'm
 doing.
 
-I'm building a game called (currently) UniverCity, its a
+I'm building a game called (currently) UniverCity, a
 simulation game inspired by Theme Hospital. The player will
 manage a university: hiring staff, building rooms, managing
-student happiness etc. The game has been built with
+student happiness, etc. The game has been built with
 multiplayer in mind so that you can compete with your friends
 and potentially sabotage their university. The game is still
 very much a work in progress.
 
-I'm building the game in [Rust][rust-site] using SDL2 for
+I'm building it in [Rust][rust-site] using SDL2 for
 window management/audio, OpenGL for rendering and LuaJIT
 for scripting. Its been a bit challenging so far because
 whilst I've written Rust code in the past I've never done
 anything on this scale (the same could be said about most
-other languages I've programmed in as well however).
-The only open source large Rust projects I currently know
-about are [`rustc`][rust-repo] and [Servo][servo-repo]
-however they are structured differently from a game-engine
-(although servo might be close but I strugle navigating
-its repo). I feel like my issues so far are due to a lack
-of experience rather than Rust however and I'll get better
-at handling this as I go on.
+other languages I've programmed in however).
+The only large, open-source Rust projects I currently know
+about are [`rustc`][rust-repo] and [Servo][servo-repo],
+both of which are structured differently when compared to
+a game engine (servo might be close but I struggle
+navigating its repo). I feel like my issues so far are due
+to a lack of experience rather than Rust, however, and that
+I'll get better at handling this as I go on.
 
 Bar me running into a wall with some design issues Rust has
-been pretty pleasant to work in. Lots of small libraries
-I can use to handle so common tasks and `cargo` makes using
-these easy. The error messages for compile errors are
-great and getting better all the time, I've almost never
-found myself confused at one. I've been stuck on nightly
-for a while now but I'm one unstable feature away from
-stable (`retain_hash_collection`) but nightly breakages
-have been rare and when it has happened `rustup` makes it
+been pretty pleasant to work in. `cargo` makes using small
+libraries to handle common tasks easy. The error messages for 
+compile errors are great and getting better all the time; I've 
+almost never found myself confused by one. I've been stuck 
+on nightly for a while now but I'm one unstable feature away from
+stable (`retain_hash_collection`). Nightly breakages have
+been rare, though, and when it has happened `rustup` makes it
 easy to rollback. I've managed to keep unsafe code to a
-minimum, the only exceptions currently are:
+minimum; the only exceptions currently are:
 
 * Accessing components outside the ecs.
 
     I'm using my own currently but using [specs][specs]
     could solve this. (I started around the time
-    specs/slightly before, so I ended up creating my own).
-    It can be done safely in some cases with my system
-    but the unsafe method allows skipping a lookup
-    per an entity which helps with performance (the
-    unsafe methods are generally only used during
-    rendering).
+    specs came into being/slightly before, so I ended
+    up creating my own). It can be done safely in some
+    cases with my system but the unsafe method allows
+    skipping a lookup per entity which helps with
+    performance (the unsafe methods are generally only
+    used during rendering).
 
 * Scripting
 
-    Whilst I've made a safe wrapper around luajit now
+    Whilst I've made a safe wrapper around luajit now,
     a lot of my code still uses a `State` struct (below)
     to work around borrow issues.
-    This occured because before using a safe wrapper raw
+    This occured because before using a safe wrapper, raw
     pointers were passed into lua hiding the borrowing
-    issues and now its got to the point where changing
+    issues; now it's gotten to the point where changing
     it has become too hard. This is something I really
-    want to fix because its one of the uglyest parts of
-    my game's code but i'm at a loss at how to solve this
+    want to fix because its one of the ugliest parts of
+    my game's code, but I'm at a loss at how to solve this
     nicely.
 
 ```bash
@@ -93,8 +92,8 @@ pub struct State {
 Students now have timetables generated for them once they have
 registered at the registration office.
 
-These timetables currently can have 4 entries on them, this
-may change later. Each entry can either be a lesson (bound
+These timetables currently can have 4 entries on them (may
+change later). Each entry can either be a lesson (bound
 to a room) or a free period allowing the student to idle
 and relax. When generating a timetable the game will
 only pick lessons from the same 'group' as the first lesson
@@ -102,7 +101,7 @@ and will not select the same lesson twice. Lessons with students
 already registered to them will be prefered over empty rooms.
 Free periods are currently randomly inserted.
 
-Students are currently stuck with the first timetable they
+Right now students are stuck with the first timetable they
 get which causes issues when rooms are removed. The plan
 is for students to re-register (or leave) at the end of
 an in-game term.
@@ -113,15 +112,15 @@ an in-game term.
 Staff, rooms and objects now have a cost and will charge the player
 to place them. Students can now pay the player as well.
 
-Staff have to be paid every 7 in game days, currently this is done
-based on the time they were initial placed and not on a schedule.
-This should hopefully be fixed later.
+Staff have to be paid every 7 in-game days. Currently this is done
+based on the time they were initially placed and not on a schedule,
+behavior that should hopefully be fixed later.
 
-Rooms charge once fully placed and not during placement, this
-makes playing around with the design of the room cheaper. When
-editing the room the cost of removed objects (or by shrinking the
-room) can be used to place new objects however any money unspent
-when finalizing the edit will be lost.
+Rooms charge once fully placed and not during placement, making
+playing around with the design of the room cheaper. When editing
+the room the cost of removed objects (or that gained by shrinking
+the room) can be used to place new objects. Any money unspent
+when finalizing the edit, however, will be lost.
 
 ### Redrawn icons
 
@@ -134,8 +133,8 @@ style fits in better with the paper theme the ui currently has going on.
 
 ### Notification system
 
-This only has the bare-bones implementation done but the look of them
-is complete. This will be used to notify the player of events occuring
+The look is complete, but the system itself is currently a bare-bones
+implementation. It will be used to notify the player of events occuring
 during the game.
 
 [A video of this system may be found here][notify]
@@ -145,8 +144,8 @@ during the game.
 ![Chairs](/img/chairs.jpg){:align="left"}
 ![A bench](/img/bench.jpg){:align="right"}
 
-Chairs and benches were added. Students will automaticallysit
-in chairs during a lecture. The number of chairs effects the
+Chairs and benches were added. Students will automatically sit
+in chairs during a lecture. The number of chairs affects the
 number of students a room can support (controller via a script).
 
 Benches will be a place for a student to idle during free periods.
@@ -157,19 +156,19 @@ member to enter a room.
 
 Students can be assigned to rooms marked as `can_idle` during free periods.
 This functions like a lesson where a script handles what the student
-does in the room but unlike lessons the room isn't fixed. Rooms are randomly
+does in the room, except that the room isn't fixed. Rooms are randomly
 selected (slightly biased towards closer rooms) and students will attempt
-to switch room after a random amount of time. Students will stop their idle
+to switch rooms after a random amount of time. Students will stop their idle
 task as soon as a lesson starts.
 
 ### Extensions
 
 ![Extension joining two buildings](/img/extension.jpg){:.cimage}
 
-An extension object was added, this allows for two buildings to be joined
+An extension object was added that allows for two buildings to be joined
 together. Originally you could overlap buildings to join them but this
-introduced a lot of hard to handle edge cases, using an extension object
-solved a lot of this issues and allows for more control over the joins of
+introduced a lot of hard-to-handle edge cases; using an extension object
+solved a lot of these issues and allows for more control over the joins of
 two buildings.
 
 ### Text wrapping on UI elements
@@ -204,7 +203,7 @@ marks). This will be used later to display happiness or other emotions.
 ### Initial work on audio
 
 Nothing major but scripts can now play non-positional audio. I currently use
-this for button presses (although i'm not happy with the current sound).
+this for button presses (although I'm not happy with the current sound).
 
 ## Internal
 
@@ -235,25 +234,25 @@ dollar / dollar
 
 ### Removed usage of `conservative_impl_trait`
 
-Whilst I love this feature I do want to start moving towards the stable
-compiler and this doesn't seem like its going to be stable for a while.
-Most cases of this that I changed just exposed the private type to the public
-although one did require boxing the type instead.
+Whilst I love this feature, I do want to start moving towards the stable
+compiler, and this doesn't seem like its going to be stable for a while.
+Most usages of this that I changed just exposed the private type to the public
+(although one did require boxing the type instead).
 
 ### Improved server side checks of commands
 
-The server ended up being too trusting in some cases, some extra checks
+The server ended up being too trusting in some cases. Some extra checks
 have been added to ensure the player is in the correct state for a command.
 
 ### Pathfinding queue
 
-Previously all pathfinding requests were handled instantly, this started
-to cause issues at the end of lessons were almost every entity will try to
+Previously all pathfinding requests were handled instantly. This started
+to cause issues at the end of lessons where almost every entity will try to
 request a path. This has been changed to a queue where paths are generated
-every tick up to a time limit, once the time limit is reaches the queue will
+every tick up to a time limit; once the time limit is reached the queue will
 wait until the next tick to continue processing paths. This will cause a small
-delay for entities getting paths during busy periods but this prevents freezing
-the game which would be worse.
+delay for entities getting paths during busy periods but prevents freezing
+the game, which would be worse.
 
 [rust-site]: https://www.rust-lang.org/
 [rust-repo]: https://github.com/rust-lang/rust
