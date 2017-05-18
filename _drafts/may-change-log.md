@@ -24,7 +24,7 @@ very much a work in progress.
 
 I'm building it in [Rust][rust-site] using SDL2 for
 window management/audio, OpenGL for rendering and LuaJIT
-for scripting. Its been a bit challenging so far because
+for scripting. It's been a bit challenging so far because
 whilst I've written Rust code in the past I've never done
 anything on this scale (the same could be said about most
 other languages I've programmed in, though).
@@ -67,7 +67,7 @@ minimum, with the only exceptions currently being:
     pointers were passed into lua hiding the borrowing
     issues; now it's gotten to the point where changing
     it has become too hard. This is something I really
-    want to fix because its one of the ugliest parts of
+    want to fix because it's one of the ugliest parts of
     my game's code, but I'm at a loss at how to solve this
     nicely.
 
@@ -177,7 +177,7 @@ Simple enough but was something that had been missing for a while.
 Still have a few places that need updating to use it but the implementation
 exists now.
 
-### Walls are lowered during editting
+### Walls are lowered during editing
 
 This replaces the transparent effect I was using before. Easier to render
 and solves a lot of the graphical glitches that the old effect had.
@@ -235,7 +235,7 @@ dollar / dollar
 ### Removed usage of `conservative_impl_trait`
 
 Whilst I love this feature, I do want to start moving towards the stable
-compiler, and this doesn't seem like its going to be stable for a while.
+compiler, and this doesn't seem like it's going to be stable for a while.
 Most usages of this that I changed just exposed the private type to the public
 (although one did require boxing the type instead).
 
