@@ -47,7 +47,7 @@ have been rare, and when it has happened `rustup` makes it
 easy to rollback. I've managed to keep unsafe code to a
 minimum, with the only exceptions currently being:
 
-* Accessing components outside the ECS
+* Access of components outside the ECS
 
     I'm using my own currently but using [specs][specs]
     could solve this. (I started around the time
