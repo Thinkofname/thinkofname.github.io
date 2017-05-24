@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "UniverCity - Change log"
+comments: 5
 ---
 
 I thought I should start a little series of monthly blog posts
