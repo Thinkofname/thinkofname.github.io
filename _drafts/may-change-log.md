@@ -38,14 +38,15 @@ I'll get better at handling this as I go on.
 
 Bar me running into a wall with some design issues Rust has
 been pretty pleasant to work in. `cargo` makes using small
-libraries to handle common tasks easy. The error messages for 
-compile errors are great and getting better all the time; I've 
-almost never found myself confused by one. I've been stuck 
-on nightly for a while now but I'm one unstable feature away from
-stable (`retain_hash_collection`). Even so, nightly breakages
-have been rare, and when it has happened `rustup` makes it
-easy to rollback. I've managed to keep unsafe code to a
-minimum, with the only exceptions currently being:
+libraries to handle common tasks easy. The error messages for
+compile errors are great and getting better all the time; I've
+almost never found myself confused by one. I've been stuck
+on nightly for a while now ~~but I'm one unstable feature away from
+stable (`retain_hash_collection`)~~ **Update** Just was marked
+stable before publishing this in the latest nightly (and beta), will
+be in stable in a few weeks. Even so, nightly breakages have been rare,
+and when it has happened `rustup` makes it easy to rollback. I've managed
+to keep unsafe code to a minimum, with the only exceptions currently being:
 
 * Access of components outside the ECS
 
@@ -70,6 +71,19 @@ minimum, with the only exceptions currently being:
     want to fix because it's one of the ugliest parts of
     my game's code, but I'm at a loss at how to solve this
     nicely.
+
+    **Update**: After writing this I attempted to solve
+    this issue. I was able to fix `ui` and `audio` (below)
+    by changing to `Rc<RefCell<T>>` for those types (handled
+    internally for the most part) and storing a weak reference
+    to them in lua's registry. The only issue left is the
+    level which is the only part of `GameInstance` that is
+    actually used by lua. This is complicated because the
+    level uses scripting to build some rooms and to place
+    every type of object whilst also having to be accessible
+    from lua. It might be possible to split up the level
+    struct more to try and solve this but i'm somewhat lost
+    on where to split.
 
 ```bash
 $ rg "State" | wc -l
@@ -171,6 +185,18 @@ introduced a lot of hard-to-handle edge cases; using an extension object
 solved a lot of these issues and allows for more control over the joins of
 two buildings.
 
+### Work on having random colors for units
+
+[![Random colours for professors](/img/random-prof.jpg){:.cimage}](/img/random-prof-orig.jpg)
+
+[Video showing more][random] To try and make staff/students feel
+more unique I've started to work on a feature that allows for
+entities to randomly colours parts of their model. Currently
+these colours are selected from the entity's json file but that
+does limit the number of colors I have to work with (mainly
+because listing them all is a pain). I also need to work on
+syncing these colours between the server and client.
+
 ### Text wrapping on UI elements
 
 Simple enough but was something that had been missing for a while.
@@ -259,3 +285,4 @@ the game, which would be worse.
 [servo-repo]: https://github.com/servo/servo
 [specs]: https://github.com/slide-rs/specs
 [notify]: https://vid.me/adyC
+[random]: https://vid.me/ZetY
