@@ -3,39 +3,38 @@ layout: post
 title:  "UniverCity - Change log"
 ---
 
-The previous post including an introduction about this game
+The previous post including an introduction to this game
 can be found [here]({% post_url 2017-05-24-may-change-log %}).
 
-Not as long as the last one as it only covers one month and
+This post is not as long as the last one as it only covers one month and
 quite a lot of time has been spent on stylish.
 
 ## Stylish
 
 ![Stylish's demo project](/img/stylish-demo.png){:align="right"}
 
-One of the big things i've been working on this month is [Stylish][stylish].
-Stylish is a simple ui system mainly targeted for games. The system
-revolves around styles (hence the name). Elements are just names with
-key/value pairs and optionally children, by their own they do nothing.
+One of the big things I've been working on this month is [Stylish][stylish].
+Stylish is a simple ui system that revolves around styles (hence the name)
+and is mainly targeted at games. Elements are just names with
+key/value pairs and optionally children; by their own they do nothing.
 
-Styles control everything: positioning, appearance and in the case of
-UniverCity they control events too. Stylish itself only cares about
-a few style rule, `layout` to control what layout engine controls
-the children of this element and then `scroll_x/y` and `clip_overflow`
-which are used for positioning when querying.
+Styles control everything: positioning, appearance and even events (in the
+case of UniverCity). Stylish itself only cares about a few style rules:
+`layout` to set what layout engine controls the children of an element and then
+`scroll_x/y` and `clip_overflow` which are used for positioning when querying.
 
 Every other style rule is able to be used by either the user of the
 library or the renderer. Stylish comes with a crate `stylish_webrender`
 which uses [Servo's webrender][webrender] to render via OpenGL (which
-is what I use for my game) however in theory anything can be used. For
-example I put together a [simple web version][stylish_web] that uses
-a html canvas to render, this is incomplete because I didn't want to
-spend too long on it.
+is what I use for my game). In theory, however, anything can be used. For
+example, I put together a [simple web version][stylish_web] that uses
+a HTML canvas to render (incomplete because I didn't want to spent too long on
+it).
 
 ### General
 
 For stylish itself the main source of control is via layout engines.
-Layout engines position child elements within an element, they can
+Layout engines position child elements within an element and can
 also resize the element to fit the children. By default every element
 uses the layout type `absolute` which uses the `x`, `y`, `width` and
 `height` style values to position the element relative to the parent
@@ -49,7 +48,7 @@ element. `stylish_webrender` also provides two layout types:
     manually).
 
 Stylish was mainly designed for elements and styles to be loaded
-from files but I did create a macro that can be used to create
+from files, but I did create a macro that can be used to create
 elements inline.
 
 ```rust
@@ -60,18 +59,18 @@ manager.add_node(node!{
 });
 ```
 
-I haven't focused on optimization yet but with webrender it
+I haven't focused on optimization yet, but with webrender it
 currently performs well enough for my uses.
 
 ### UniverCity
 
 ![The server connection screen from univercity](/img/stylish-univercity.jpg){:align="left"}
 
-Embedding stylish + webrender into my game ended up being pretty simple,
-the only pain point was working out what state webrender expected opengl
+Embedding stylish + webrender into my game ended up being pretty simple.
+The only pain point was working out what state webrender expected opengl
 to be in before rendering and then to reset the changes it made to the
 state afterwards. This is what ended up being enough for me after
-watching webrender in apitrace.
+watching webrender in apitrace:
 
 ```rust
 gl::clear(gl::DEPTH_BUFFER_BIT);
@@ -84,14 +83,14 @@ gl::depth_mask(true);
 ```
 
 I'm slightly worried about what future versions of webrender will do
-but I don't think it'll too much of an issue. I currently have
-webrender pinned to a commit anyway.
+but I don't think it'll be too much of an issue. I have webrender
+pinned to a commit right now anyway.
 
 I'm currently in the act of converting all the old UI stuff from json
-to stylish but progress has been good so far.
+to Stylish; progress has been good so far.
 
 One thing that UniverCity required was a way to interact with the UI
-with scripts (lua) and events. For events I decided to build them
+via scripts (lua) and events. I decided to build events
 into the style rules. This had the benefit of allowing things
 like buttons and textboxes to be implemented purely as style
 rules instead of specifically handling them in stylish.
@@ -117,9 +116,9 @@ textbox {
 }
 ```
 
-The event handlers are lua scripts however by abusing the
-custom value feature of stylish I can also use rust
-closures by setting them as properties.
+The event handlers are lua scripts. You can, however, by abusing the
+custom value feature of Stylish, also use rust closures by setting them
+as properties.
 
 ```rust
 fn from_value(val: stylish::Value) -> Option<Vec<MethodDesc<E>>> {
@@ -140,12 +139,12 @@ fn from_value(val: stylish::Value) -> Option<Vec<MethodDesc<E>>> {
 ```
 
 Mouse events use the `query_at` method to find an element to fire the
-event, key events use a *'focused'* element to fire their events at
+event. Key events use a *'focused'* element to fire their events at
 and (de)init/update work on every element.
 
-I've only just started using stylish with UniverCity but so far it seems
-good (A large improvement over what was before). Its possible i'll start
-finding issues as I finish moving everything over to it.
+I've only just started using Stylish with UniverCity and so far it seems to
+work well (a large improvement over what I was doing before). It's possible
+I'll start finding issues as I finish moving everything over to it.
 
 ## Gameplay
 
@@ -154,13 +153,13 @@ finding issues as I finish moving everything over to it.
 ![The new improved path texture](/img/path-texture.jpg){:.cimage}
 
 The old path texture was one of the first textures drawn for the game
-and was showing its age as i've improved with my texture work.
+and was showing its age as I've improved with my texture work.
 
-The brick texture was also pretty old and when the SSAO changes happened
-(seen below) I updated the wall texture to have a simpler look.
+The brick texture was also pretty old, and when the SSAO changes happened
+(see below) I updated the wall texture to have a simpler look.
 
-The textures are still just simple shapes with noise and some basic shading
-but it fits in much better with the rest of the textures.
+The textures are still just simple shapes with noise and some basic shading,
+but they fit in much better with the rest of the textures.
 
 ### SSAO and lighting improvements
 
@@ -169,38 +168,37 @@ but it fits in much better with the rest of the textures.
 
 Click the images for a larger view.
 
-Given the angle of the game having depth be clear is important.
-The old rendering was bright and colorful but the only visual
-clue about depth was from the shadows from walls and objects
+Given the angle of the game, having depth be clear is important.
+The old rendering was bright and colorful, but the only visual
+clue about depth was from the shadows from walls and objects,
 which in the case of walls couldn't be seen from every angle.
-The game did have some normal based lighting but it wasn't
+The game did have some normal based lighting, but it wasn't
 very visible.
 
-So to improve this I fixed up the normal lighting so it was more
-noticable and then added SSAO. With the new pass system (detailed
-below in *Internals*) this ended up being somewhat system to add
+To improve this, I fixed up the normal lighting so it was more noticeable
+and then added SSAO. With the new pass system (detailed
+below in *Internals*) this ended up being somewhat simple to add
 (apart from tracking down some gpu specific bugs). SSAO comes
-with a peforance hit but it isn't noticable on high end machines
+with a peformance hit, but it isn't noticable on high end machines
 and I plan to add an option to disable it on low end machines.
 
 ### Students got a model
 
 ![A student sitting](/img/student-model.jpg){:align="left"}
 
-[The old blue box model will be missed][boxy] but the new model
-is much more fitting. Like the professor this model is fully
-setup for the tinting system that was made previously.
+[The old blue box model will be missed][boxy], but the new model
+is much more fitting. It is fully set up for the tinting system that
+was made previously, like the professor.
 
 The student uses modified animations from the professor with an
 additional sitting animation.
 
-I still need to add other student models (female, other looks etc)
-however this takes a lot of time so i'm defering that to a later
-date.
+I still need to add other student models (female, other looks etc.),
+but it takes a lot of time. I am therefore deferring that to a later date.
 
 ### Skin color fixes
 
-Minor tweet to the underlying texture of professors/students so
+Minor tweak to the underlying texture of professors/students so
 that skin colors don't look as washed out.
 
 ### Shops
@@ -209,19 +207,19 @@ that skin colors don't look as washed out.
 
 ### Background for the main menu
 
-The main menu now renders the a dummy game instance to use as the background.
+The main menu now renders a dummy game instance to use as the background.
 
 ## Internal
 
 ### Threaded pathfinding
 
-Whilst its still not done in the background I have used [rayon][rayon]
+Whilst it's still not done, in the background I have used [rayon][rayon]
 to at least compute a few paths in parallel.
 
 ### Render passes
 
 Implemented a new pipeline system for handling render passes. The pipeline
-is defined using a builder: [here][passes]. This made adding the passes for
+is defined [using a builder][passes]. This made adding the passes for
 SSAO much easier.
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
