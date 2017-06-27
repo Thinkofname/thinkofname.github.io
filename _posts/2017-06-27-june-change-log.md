@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "UniverCity - Change log"
+comments: 7
 ---
 
 The previous post including an introduction to this game
