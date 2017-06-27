@@ -213,7 +213,7 @@ The main menu now renders a dummy game instance to use as the background.
 
 ### Threaded pathfinding
 
-Whilst it's still not done, in the background I have used [rayon][rayon]
+Whilst it's still not done in the background, I have used [rayon][rayon]
 to at least compute a few paths in parallel.
 
 ### Render passes
