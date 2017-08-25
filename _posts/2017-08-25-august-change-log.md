@@ -122,5 +122,9 @@ the room's lists.
   ago and managed to have these backwards.
 * Staff placement can now be cancelled.
 
-[stylish]: https://github.com/Thinkofname/stylish
-[imgur-options]: http://i.imgur.com/vCpnGHw.gifv
+## Twitch
+
+I've been streaming my work on [twitch here][twitch] most days.
+Feel free to stop by and watch if i'm streaming.
+
+[twitch]: https://www.twitch.tv/thinkofname
