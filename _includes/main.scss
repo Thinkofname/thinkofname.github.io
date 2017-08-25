@@ -34,25 +34,6 @@ span.postmeta {
 	line-height: 0.6;
 }
 
-@media (min-width: 800px) {
-	img {
-		padding: 15px;
-	}
-}
-
-@media (max-width: 800px) {
-	body {
-		margin: 15px auto;
-		padding: 10px;
-	}
-	img {
-		display: block;
-		max-width: 100%;
-		margin: 0 auto;
-		float: none;
-	}
-}
-
 p > code {
 	background-color: #DDD;
 }
@@ -107,4 +88,31 @@ footer {
 iframe {
 	margin: 0 auto;
 	display: block;
+}
+
+video {
+	margin: 0 auto;
+	display: block;
+}
+
+@media (min-width: 800px) {
+	img {
+		padding: 15px;
+	}
+}
+
+@media (max-width: 800px) {
+	body {
+		margin: 15px auto;
+		padding: 10px;
+	}
+	img {
+		display: block;
+		max-width: 100%;
+		margin: 0 auto;
+		float: none;
+	}
+	video, iframe{
+		max-width: 100%;
+	}
 }
