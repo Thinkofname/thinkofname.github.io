@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "UniverCity - Change log"
+comments: 12
 ---
 
 Spent this month doing a bit of clean up both for the code and the assets.
