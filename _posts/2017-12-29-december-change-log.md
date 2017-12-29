@@ -23,15 +23,15 @@ Windows are now implemented using multi-textured static models,
 special textures get replaced with the correct wall texture at
 runtime based on placement.
 
-Implementing this required a bit of work to effiently store the
+Implementing this required a bit of work to efficiently store the
 type of window for a wall without increasing the size of `WallInfo`
-which each tile in the level has two making every little addition
+which each tile in the level has two, making every little addition
 to the structure greatly increase the memory required. The
 `ResourceKey` structure used to name resources was too large to
 store in the `WallInfo` struct (about 64 bytes on 64 bit machines).
 Instead of storing it directly the level now keeps a map of key
 to a 8 bit id which is stored instead, this limits the number of
-unique types of windows 256 but that should be more than enough
+unique types of windows to 256 but that should be more than enough
 for now.
 
 ### Staff members can be moved between rooms
@@ -57,8 +57,8 @@ camera was clamped as well.
 Rooms now can have detailed tooltips. Currently only used for the
 registration office to display the number of staff but can be used
 for anything. The idea for this is to allow rooms to display the
-current state of the room and any issues if any so that the player
-can react to them.
+current state of the room and any issues so that the player can
+react to them.
 
 ### Main menu building improved
 
@@ -73,7 +73,7 @@ a lot.
 Scripts can now create notifications to alert the player about issues
 within a room. This required a bit of work to allow the server side
 script to notify a remote player whilst also allowing them to have
-full control over the look of it. To handle this scripts can encode
+full control over the look of it. To handle this, scripts can encode
 data to be sent to the client and be decoded by the script on the
 the client where it can create the UI elements required.
 
@@ -84,15 +84,15 @@ to generate the tooltip instead of the server pushing to the client.
 ### Minor things
 
 * Had to use more bits for positions with networking due to rounding
-  issues causing pathfinding to fail. There might be a better solve
-  this without increasing it but I haven't got the time to research
+  issues causing pathfinding to fail. There might be a better way to
+  solve this without increasing it but I haven't got the time to research
   this.
 * Simplified script handling for rooms. Previously I supported
   customizing the method name prefix for room scripts so that
   multiple rooms could be in a single file. Every room used the
   same prefix and due to the number of methods now having multiple
   rooms in one file would be really messy. The prefix has been removed.
-* The `Bitable` type has been removed
+* The `Bitable` type has been removed.
   For networking the `Bitable` trait was used to allow types to be
   encoded into packets with control at the bit level instead of
   byte. `delta-encode` can be set to always encode a type effectively
@@ -116,13 +116,13 @@ to generate the tooltip instead of the server pushing to the client.
 
 ## Twitch
 
-I've haven't been streaming my work on [twitch here][twitch] lately
+I haven't been streaming my work on [twitch here][twitch] lately
 but sometimes I will pop up and stream for a bit.
-Feel free to stop by and watch if i'm streaming.
+Feel free to stop by and watch if I'm streaming.
 
 ## Subreddit
 
-I've opened a subreddit for the game as per someones suggestion. Its
+I've opened a subreddit for the game as per someones suggestion. It's
 mostly empty currently but hopefully that'll change once I get some
 time to put some work into it. [Here][subreddit]
 
