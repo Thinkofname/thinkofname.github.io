@@ -7,17 +7,17 @@ redirect_from: "/2018/01/28/february-change-log.html"
 
 UniverCity is a university management game being programmed in the Rust
 programming language. This month was spent mostly on the business side
-of things including going through the steam partner process.
+of things, including going through the steam partner process.
 
 ## Internal
 
 ### Steamworks(-rs)
 
-As i'm working on putting them game on [Steam][steam] I wanted to
+As I'm working on putting them game on [Steam][steam] I wanted to
 integrate with steamworks. There didn't appear to be any work on this
 already so i've begun some work [here][steamworks-rs]. I've only
 been wrapping parts that may be useful for me currently due to a lack
-of time but i'm more than happy to accept PRs for missing parts.
+of time but I'm more than happy to accept PRs for missing parts.
 
 This ended up harder than I originally expected due to the design
 of steamworks. The steamworks library was originally designed with
@@ -41,9 +41,9 @@ to use methods. Thread-safety is a concern as well because whilst
 the API supports being used in multiple threads, parts state they
 cannot and some state that the whole API mustn't be used whilst
 they are being called. So far I haven't found a reason to use these
-methods yet so i'm hoping I can just avoid the issue altogether.
+methods yet so I'm hoping I can just avoid the issue altogether.
 As it stands the wrapper in its current state seems to work with my
-limited testing with the test AppId (480) and my own but i'm hoping
+limited testing with the test AppId (480) and my own but I'm hoping
 to put it through some more real-world testing soon.
 
 ```rust
@@ -69,7 +69,7 @@ they could be placed in their own depot and shared between all platforms.
 
 ### Swtiched to MSVC for Windows builds
 
-Due to linux servers being cheaper and the fact I develop on linux i've been
+Due to Linux servers being cheaper and the fact that I develop on Linux I've been
 cross-compiling my game to windows via the Mingw toolchain which has been
 really useful for testing quickly. However due to the integration with steam
 requiring the use of C++ I wasn't able to have Mingw link with the steamapi.dll
@@ -87,7 +87,7 @@ before the driver would pick them up.
 
 As part of my build I now use `.cargo/config` to manually a linker parameter
 as followed: `-Clink-arg=/DEF:gpuopt/lib.def`. I've only been able to test
-with one Nvidia optimus laptop but i'm assuming this should work for all
+with one Nvidia optimus laptop but I'm assuming this should work for all
 of them.
 
 ```rust
@@ -114,7 +114,7 @@ EXPORTS
 ![Staff can now finally take a break](/img/staff-room.jpg){:align="left"}
 
 Finally added a staff room which will allow tired staff to rest. Currently
-the room only contains sofas to rest on but i'm planning more in the future.
+the room only contains sofas to rest on but I'm planning more in the future.
 
 In order to have sofas work (due to allowing two people on one object) I reworked
 the sitting scripts in rooms and shared a lot of the code between them in the
