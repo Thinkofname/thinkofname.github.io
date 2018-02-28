@@ -149,7 +149,7 @@ broken in a lot of places, this should correctly handle all those cases now.
   e.g. plants can makes students happier
 * Staff shouldn't get stuck in toilets anymore
 
-  This actually effected more than toilets but theres where it
+  This actually effected more than toilets but that is where it
   was originally noticed.
 * Scroll bars have been improved
 
