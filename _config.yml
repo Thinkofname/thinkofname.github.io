@@ -13,3 +13,4 @@ compress_html:
   comments: all
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from

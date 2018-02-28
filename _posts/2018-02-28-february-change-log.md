@@ -2,6 +2,7 @@
 layout: post
 title:  "UniverCity - Change log"
 comments: 15
+redirect_from: "/2018/01/28/february-change-log.html"
 ---
 
 UniverCity is a university management game being programmed in the Rust
