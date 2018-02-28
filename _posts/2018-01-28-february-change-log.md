@@ -99,7 +99,7 @@ pub static NvOptimusEnablement: u32 = 1;
 pub static AmdPowerXpressRequestHighPerformance: u32 = 1;
 ```
 
-gpu.def:
+gpuopt/lib.def:
 ```
 EXPORTS
     NvOptimusEnablement DATA
