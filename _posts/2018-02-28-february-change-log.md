@@ -64,10 +64,10 @@ client.run_callbacks();
 ### Steam builds
 
 Had to rework my CI build process slightly to work better when uploading
-to steam. This required seperating the assets from the main build so that
+to steam. This required separating the assets from the main build so that
 they could be placed in their own depot and shared between all platforms.
 
-### Swtiched to MSVC for Windows builds
+### Switched to MSVC for Windows builds
 
 Due to Linux servers being cheaper and the fact that I develop on Linux I've been
 cross-compiling my game to windows via the Mingw toolchain which has been
@@ -82,7 +82,7 @@ exporting correctly.
 
 Originally I had hoped to do this in a reusable crate but that doesn't seem
 to be possible. Apparently just having these variables public wasn't enough
-to do the trick and a seperate definition file (included below) was required
+to do the trick and a separate definition file (included below) was required
 before the driver would pick them up.
 
 As part of my build I now use `.cargo/config` to manually a linker parameter
