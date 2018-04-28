@@ -96,7 +96,6 @@ the performance on low end machines.
 ### Floors can now be customized per a room
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Floors can now be customized. Make a nice or ugly pattern how ever you like. <a href="https://twitter.com/hashtag/gamedev?src=hash">#gamedev</a> <a href="https://twitter.com/hashtag/indiedev?src=hash">#indiedev</a> <a href="https://t.co/NShjYn7uY2">pic.twitter.com/NShjYn7uY2</a></p>&mdash; Thinkofname (@thinkofdeath) <a href="https://twitter.com/thinkofdeath/status/911243216963457024">September 22, 2017</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## Internal
 

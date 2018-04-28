@@ -112,7 +112,6 @@ to generate the tooltip instead of the server pushing to the client.
   This ended up fixing a few issues where entities could end up spinning.
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Huh, this is a new bug <a href="https://twitter.com/hashtag/gamedev?src=hash&amp;ref_src=twsrc%5Etfw">#gamedev</a> <a href="https://twitter.com/hashtag/indiedev?src=hash&amp;ref_src=twsrc%5Etfw">#indiedev</a> <a href="https://t.co/mWgVU1y1YE">pic.twitter.com/mWgVU1y1YE</a></p>&mdash; Thinkofname (@thinkofdeath) <a href="https://twitter.com/thinkofdeath/status/943490337187749889?ref_src=twsrc%5Etfw">December 20, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## Twitch
 
